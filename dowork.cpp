@@ -1,8 +1,14 @@
 #include "dowork.h"
 
-void doWork() {
-	for (int i = 0; i < 10; ++i) {
-		std::cout << std::this_thread::get_id() << " doWork() " << i << std::endl;
-		std::this_thread::sleep_for(std::chrono::milliseconds(500));
-	}
+void doWork(int a, int b, const std::string &message) {
+	std::cout << std::this_thread::get_id() << " =========== doWork(): " << message << std::endl;
+	
+	std::cout << std::this_thread::get_id() << " =========== doWork(): START " << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+	std::cout << std::this_thread::get_id() << " =========== doWork(): a + b = " << a + b << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	
+	std::cout << std::this_thread::get_id() << " =========== doWork(): END " << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
