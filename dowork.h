@@ -4,4 +4,4 @@
 #include <iostream>
 #include <thread>
 
-void doWork(int a, int b, const std::string &message);
+void doWork(int &a);
