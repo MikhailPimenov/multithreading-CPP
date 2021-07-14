@@ -21,12 +21,14 @@
   <ItemGroup>
     <ClCompile Include="dowork.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sum.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dowork.h" />
+    <ClInclude Include="sum.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
