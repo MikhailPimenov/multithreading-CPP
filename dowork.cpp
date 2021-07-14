@@ -1,12 +1,22 @@
 #include "dowork.h"
 
-void doWork(int &a) {
-	std::cout << std::this_thread::get_id() << " =========== doWork(): START " << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+std::mutex g_mutex;
 
-	a *= 2;
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	
+void doWork(char symbol) {
+	std::cout << std::this_thread::get_id() << " =========== doWork(): START " << std::endl;
+	std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+
+	g_mutex.lock();
+	for (int i = 0; i < 10; ++i) {
+		for (int j = 0; j < 20; ++j) {
+			std::cout << symbol;
+        	std::this_thread::sleep_for(std::chrono::milliseconds(1));
+		}
+		std::cout << std::endl;
+	}
+	std::cout << std::endl;
+	g_mutex.unlock();
+
 	std::cout << std::this_thread::get_id() << " =========== doWork(): END " << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 }

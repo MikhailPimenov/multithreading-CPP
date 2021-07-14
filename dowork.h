@@ -2,6 +2,7 @@
 
 #include <chrono>
 #include <iostream>
+#include <mutex>
 #include <thread>
 
-void doWork(int &a);
+void doWork(char symbol);
