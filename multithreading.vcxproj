@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="dorecursivework.cpp" />
     <ClCompile Include="dowork.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="myclass.cpp" />
@@ -29,6 +30,7 @@
     <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dorecursivework.h" />
     <ClInclude Include="dowork.h" />
     <ClInclude Include="myclass.h" />
     <ClInclude Include="sum.h" />
