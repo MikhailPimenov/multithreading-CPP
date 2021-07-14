@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="dowork.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="myclass.cpp" />
     <ClCompile Include="sum.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -28,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dowork.h" />
+    <ClInclude Include="myclass.h" />
     <ClInclude Include="sum.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

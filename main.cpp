@@ -2,13 +2,20 @@
 #include <iostream>
 #include <thread>
 
-#include "sum.h"
+#include "myclass.h"
 
 int main() {
-	int result = 5;
-	std::cout << result << std::endl;
+	int result3 = 15;
+	std::cout << result3 << std::endl;
+	int a = 12;
+	int b = 7;
 
-	std::thread thread1([&result](){ result = sum(7, 12); });
+
+	MyClass m;
+	std::thread thread1(&MyClass::doWork, &m);
+	std::thread thread2(&MyClass::doWork, m); // passing the copy of object m
+	std::thread thread3(&MyClass::doWork2, &m, a);
+	std::thread thread4([&m, &result3, a, b]() { result3 = m.sum(a, b); });
 	
 	for (int i = 0; i < 10; ++i) {
 		std::cout << std::this_thread::get_id() << " main() " << i << std::endl;
@@ -16,7 +23,10 @@ int main() {
 	}
 	
 	thread1.join();
-	std::cout << result << std::endl;
+	thread2.join();
+	thread3.join();
+	thread4.join();
+	std::cout << result3 << std::endl;
 
 	return 0;
 }
