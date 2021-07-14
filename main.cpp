@@ -2,15 +2,19 @@
 #include <iostream>
 #include <thread>
 
-#include "dorecursivework.h"
+#include "dowork.h"
+#include "Timer.h"
 
 int main() {
 
-	std::thread thread1(doRecursiveWork, 10);
-	std::thread thread2(doRecursiveWork, 10);
-
+	Timer timer;
+	std::thread thread1(doWork, '$');
+	std::thread thread2(doWork, '#');
+	
 	thread1.join();
 	thread2.join();
+	double time = timer.elapsed();
+	std::cout << "time = " << time << std::endl;
 
 	return 0;
 }
