@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="class_for_async.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parallel_sum.cpp" />
     <ClCompile Include="parallel_sum_impl.cpp" />
@@ -32,7 +31,6 @@
     <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="class_for_async.h" />
     <ClInclude Include="parallel_sum.h" />
     <ClInclude Include="SlowIntSum.h" />
     <ClInclude Include="test_parallel_sum.h" />

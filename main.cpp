@@ -1,29 +1,28 @@
 #include <iostream>
-#include <future>
-#include <string>
+#include <vector>
 
-#include "class_for_async.h"
-
+#include "SlowIntSum.h"
+#include "test_parallel_sum.h"  
 
 int main() {
-    
-    Class_for_async_example x;
-    std::future<std::string> future_foo = std::async(std::launch::async, &Class_for_async_example::foo, &x);
-    std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    
-    std::future<std::string> future_bar = std::async(std::launch::deferred, &Class_for_async_example::bar, &x);
-    
-    std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    std::future<std::string> future_operator = std::async(std::launch::async, &Class_for_async_example::operator(), &x);
+    std::cout << "threads available: " << std::thread::hardware_concurrency() << '\n';
+    const int length = 64;
+    const std::vector <SlowIntSum> vector = [=]() {
+        std::vector <SlowIntSum> temp;
+        temp.reserve(length);
 
+        for (std::size_t i = 0; i < length; ++i)
+            temp.push_back(SlowIntSum(1, 5));
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-    
-    std::cout << "\ncalling future_bar.wait():\n";
-    future_bar.wait();
-    
-    std::cout << "\ncalling future_operator.get():\n";
-    std::cout << future_operator.get() << '\n';
+        return std::move(temp);
+    }();
 
+    const double time1 = test_parallel_sum(vector, 16384u, 10);
+    const double time2 = test_parallel_sum(vector, 2u, 10);
+    std::cout << "average time = " << time1 << std::endl;
+    std::cout << "average time = " << time2 << std::endl;
+
+    const double ratio = time1 / time2;
+    std::cout << "time1 / time2 = " << ratio << std::endl;
     return 0;
 }
